@@ -1,4 +1,5 @@
 import os, requests, json, re
+
 from bs4 import BeautifulSoup
 from datetime import date
 
