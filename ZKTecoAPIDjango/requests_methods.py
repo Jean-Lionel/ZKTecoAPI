@@ -76,6 +76,7 @@ class ZKTeco:
 		# self.r = requests.post("http://"+self.domain+"/csl/query?action=run", data=api_request, cookies=self.cookies, timeout=self.timeout)
 		try:
 			self.r = requests.post("http://"+self.domain+"/csl/query?action=run", data=api_request, cookies=self.cookies, timeout=self.timeout)
+
 		except Exception as e:
 			return {"erreur": str(e)}
 		if(self.r.content.startswith(b"HTTP") and tryout):
@@ -84,9 +85,11 @@ class ZKTeco:
 			return self.logs(id_user, sdate, edate, tryout=False)
 
 		soup = BeautifulSoup(self.r.content)
+
 		soup_table = soup.find_all("tr")
 		data = []
 		colums = [x.text for x in soup_table.pop(0).find_all('td')]
+
 		for row in soup_table:
 			new_data = {}
 			for i, value in enumerate(row.find_all("td")):
@@ -106,6 +109,7 @@ class ZKTeco:
 		except:
 			return {"erreur": "une erreur de connectivité est survenue"}
 
+
 		if(self.r.content.startswith(b"HTTP") and tryout):
 			self.createConnection()
 			return self.users(first, last, tryout=False)
@@ -116,6 +120,7 @@ class ZKTeco:
 		soup_table = soup.find_all("tr")
 		data = []
 		colums = [x.text for x in soup_table.pop(0).find_all('td')]
+	
 		for row in soup_table:
 			new_data = {}
 			for i, value in enumerate(row.find_all("td")):

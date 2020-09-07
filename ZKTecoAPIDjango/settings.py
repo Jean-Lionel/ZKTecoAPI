@@ -26,6 +26,7 @@ SECRET_KEY = '6v%9h2nb8_@w#z_lh)4qtz=r7l0(i&_d@j-mtmlm8p2$an@@q5'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -123,6 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-CORS_ORIGIN_ALLOW_ALL = True
+
